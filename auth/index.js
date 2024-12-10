@@ -5,6 +5,7 @@ const { userRouter } = require("./routes/user.routes")
 const app = express()
 const dotenv = require("dotenv").config()
 
+app.use(express.json())
 app.use("/user",userRouter)
 
 app.listen(process.env.port, async () => {
