@@ -1,5 +1,4 @@
 const express = require("express")
-const userModel = require("../model/user.Model")
 const { userCreate, userLogin } = require("../contrller/user.controller")
 
 const userRouter = express.Router()

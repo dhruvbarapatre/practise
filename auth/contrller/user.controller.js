@@ -1,5 +1,6 @@
 const userModel = require("../model/user.Model")
 const bcrypt = require("bcrypt")
+const jwt = require("jsonwebtoken")
 
 const userCreate = async (req, res) => {
     const { name, email, password } = req.body
@@ -47,7 +48,12 @@ const userLogin = async (req, res) => {
                 res.status(400).json({ message: "Error In Hashing Password...", err })
             }
             if (result) {
-                res.status(200).json({ message: "Login Succesfully..." })
+                jwt.sign({ userInfo: findEmail }, "asjjjhjhj", (err, token) => {
+                    if (err) {
+                        res.status(400).json({ message: err })
+                    }
+                    res.cookie('UserToken',token).json({ message: "Login Succesfully..." })
+                })
             } else if (!result) {
                 res.status(400).json({ message: "Wrong Password..." })
             }
