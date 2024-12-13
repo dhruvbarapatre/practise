@@ -1,7 +1,7 @@
 const userModel = require("../model/user.Model")
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
-
+const dotenv=require("dotenv").config()
 const userCreate = async (req, res) => {
     const { name, email, password } = req.body
     if (!name || !email || !password) {
@@ -48,7 +48,7 @@ const userLogin = async (req, res) => {
                 res.status(400).json({ message: "Error In Hashing Password...", err })
             }
             if (result) {
-                jwt.sign({ userInfo: findEmail }, "asjjjhjhj", (err, token) => {
+                jwt.sign({ userInfo: findEmail }, process.env.secret_key, (err, token) => {
                     if (err) {
                         res.status(400).json({ message: err })
                     }
