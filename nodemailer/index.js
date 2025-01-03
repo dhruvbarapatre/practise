@@ -6,7 +6,7 @@ const transpoter = nodemailer.createTransport({
     port: 465,
     auth: {
         user: "barapatredhruv28012006@gmail.com",
-        pass: "kqqxouklyvqynhdk"
+        pass: "kqqxouqyn"
     }
 })
 
